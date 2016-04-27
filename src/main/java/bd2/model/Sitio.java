@@ -1,5 +1,6 @@
 package bd2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /*
@@ -15,9 +16,19 @@ import java.util.Collection;
  * */
 public class Sitio {
 
-	private Collection<Documento> documentos;
-	private Collection<Usuario> usuarios;
-	private Collection<Curso> cursos;
+	protected Collection<Documento> documentos;
+	protected Collection<Usuario> usuarios;
+	protected Collection<Curso> cursos;
+	
+	/*
+	 * Constructor de la clase.
+	 * Inicializa las colecciones vacías.
+	 * */
+	public Sitio(){
+		documentos = new ArrayList<Documento>();
+		usuarios = new ArrayList<Usuario>();
+		cursos = new ArrayList<Curso>();
+	}
 	
 	/*
 	 * Getter Documentos.
