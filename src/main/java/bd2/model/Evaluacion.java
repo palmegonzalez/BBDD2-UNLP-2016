@@ -15,6 +15,9 @@ public class Evaluacion extends Tarea {
 	private Integer puntaje;
 	private Traduccion traduccion;
 
+	public Evaluacion() {
+		super();
+	}
 	/**
      * Constructor con 5 parametros
      * @param fecha en que se realizo la evaluacion

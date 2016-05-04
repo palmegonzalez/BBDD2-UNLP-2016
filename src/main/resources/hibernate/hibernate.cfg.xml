@@ -11,9 +11,9 @@
 			com.mysql.jdbc.Driver
 		</property>
 
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/polyglot</property>
-		<property name="hibernate.connection.username">polyglot</property>
-		<property name="hibernate.connection.password">polyglot</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/grupo21</property>
+		<property name="hibernate.connection.username">grupo21</property>
+		<property name="hibernate.connection.password">grupo21</property>
 		
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">
@@ -21,6 +21,7 @@
 		</property>
 
 		<!-- Colocar las referencias a los archivos de mapping en este punto -->
-
+		<mapping resource="hibernate/mappings.hbm.xml" />
+		
 	</session-factory>
 </hibernate-configuration>

@@ -14,12 +14,16 @@ import java.util.Iterator;
  * @version 1.0
  */
 public class Cursada {
+	
+	private Long id;
+	private Date inicio;
+	private Usuario usuario;
+	private Collection<Prueba> pruebas; 
+	private Curso curso;
 
-	Date inicio;
-	Usuario usuario;
-	Collection<Prueba> pruebas; 
-	Curso curso;
-
+	public Cursada() {
+		super();
+	}
 	/**
      * Constructor con 3 parametros
      * @param curso indica el curso al que pertenece la cursada
@@ -43,7 +47,7 @@ public class Cursada {
 	}
 	/**
 	 * Setter fecha de inicio.
-	 * @param fecha de inicio de la cursada
+	 * @param inicio - fecha de inicio de la cursada
 	 */
 	public void setInicio(Date inicio) {
 		this.inicio = inicio;
@@ -132,5 +136,11 @@ public class Cursada {
 			}
 		}
 		return lecciones;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

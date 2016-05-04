@@ -9,10 +9,15 @@ package bd2.model;
  * @version 1.0
  */
 public class Parrafo {
-
+	
+	private Long id;
 	private String texto;
 	private Documento documento;
 	
+	public Parrafo() {
+		super();
+	}
+
 	/*
 	 * Constructor de 2 parametros.
 	 * @param texto		es el texto del parrafo.
@@ -54,6 +59,14 @@ public class Parrafo {
 	 * */
 	public void setDocumento(Documento documento) {
 		this.documento = documento;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="bd2.model">
+	<class name="bd2.model.Leccion" table="LECCION">
+		<id name="id" type="long" column="idLeccion" >
+			<generator class="native" />
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+	</class>
+	<class name="bd2.model.Idioma" table="IDIOMA">
+		<id name="id" type="long" column="idIdioma" >
+			<generator class="native" />
+		</id>
+		<property name="nombre" column="nombre" type="string"/> 
+		<many-to-one name="diccionario" class="Diccionario" cascade="all" column="idDiccionario" unique="true" not-null="true" />
+	</class>
+	<class name="bd2.model.Diccionario" table="DICCIONARIO">
+		<id name="id" type="long" column="idDiccionario" >
+			<generator class="native" />
+		</id>
+    	<map name="definiciones">
+      		<key column="idDiccionario"/>
+    		<map-key column="clave" type="string"></map-key>
+    		<element column="definicion" type="string"></element>
+		</map>
+		<property name="edicion" column="edicion" type="string"/>
+		<one-to-one name="idioma" property-ref="id" class="Idioma"></one-to-one>
+	</class>
+	<class name="bd2.model.Prueba" table="PRUEBA">
+		<id name="id" type="long" column="idPrueba" >
+			<generator class="native" />
+		</id>
+		<property name="puntaje" column="puntaje" type="int" />
+		<many-to-one name="leccion" cascade="all" column="idLeccion" unique="true" />
+	</class>
+	<class name="bd2.model.Curso" table="CURSO">
+		<id name="id" type="long" column="idCurso" >
+			<generator class="native" />
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+		<property name="nivel" column="nivel" type="int"/>
+		<many-to-one name="idioma" column="idIdioma" cascade="all" unique="true" />
+		<list name="lecciones" cascade="all">
+			<key column="idCurso"/>
+			<index column="idCursoLeccion"/>
+			<one-to-many class="Leccion"/>
+		</list>
+	</class>
+	<class name="bd2.model.Parrafo" table="PARRAFO">
+		<id name="id" type="long" column="idParrafo" >
+			<generator class="native" />
+		</id>
+		<property name="texto" column="texto" type="string"/>
+		<many-to-one name="documento" cascade="all" column="idDocumento" unique="true" />
+	</class>
+	<class name="bd2.model.Documento" table="DOCUMENTO">
+		<id name="id" type="long" column="idDocumento" >
+			<generator class="native" />
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+		<property name="complejidad" column="complejidad" type="int"/>
+		<list name="parrafos" cascade="all">
+			<key column="idDocumento"/>
+			<index column="idDocumentoParrafo"/>
+			<one-to-many class="bd2.model.Parrafo"/>
+		</list>
+		<many-to-one name="idioma" cascade="all" column="idIdioma" unique="true" />
+	</class>
+	<class name="bd2.model.Tarea" table="TAREA">
+		<id name="id" type="long" column="idTarea" >
+			<generator class="native" />
+		</id>
+		<discriminator column="tipo_tarea" type="string"/>
+		<property name="fecha" column="fecha" type="date"/>
+		<property name="descripcion" column="descripcion" type="string"/>
+		<property name="completa" column="completa" type="boolean"/>
+		<subclass name="bd2.model.Traduccion" discriminator-value="TR">
+			<property name="texto" column="texto" type="string" />
+			<many-to-one name="idioma" column="idIdioma" unique="true" cascade="all" />
+			<many-to-one name="parrafo" column="idParrafo" unique="true" cascade="all" />
+		</subclass>
+		<subclass name="bd2.model.Evaluacion" discriminator-value="EV">
+			<property name="puntaje" column="puntaje" type="int" />
+			<many-to-one name="traduccion" column="idTraduccion" unique="true" cascade="all" />
+		</subclass>
+	</class>
+	<class name="bd2.model.Cursada" table="CURSADA">
+		<id name="id" type="long" column="idCursada" >
+			<generator class="native" />
+		</id>
+		<property name="inicio" column="inicio" type="date" />
+		<list name="pruebas" cascade="all">
+			<key column="idCursada" />
+			<index column="idCursadaPrueba" />
+			<one-to-many class="bd2.model.Prueba" />
+		</list>
+		<many-to-one name="curso" column="idCurso" cascade="all" unique="true" />
+		<many-to-one name="usuario" column="idUsuario" cascade="all" unique="true" />
+	</class>
+		<class name="bd2.model.Usuario" table="USUARIO">
+		<id name="id" type="long" column="idUsuario" >
+			<generator class="native" />
+		</id>
+		<property name="email" column="email" type="string" />
+		<property name="nombre" column="nombre" type="string" />
+		<property name="fechaDeCreacion" column="fecha_de_creacion" type="date" />
+	  	<list name="cursadasRealizadas" cascade="all">
+			<key column="idUsuario" not-null="false" />
+			<list-index column="idUsuarioCursada" />
+			<one-to-many class="bd2.model.Cursada" />
+		</list>
+		<list name="traducciones" cascade="all">
+			<key column="idUsuario"/>
+			<index column="idUsuarioTraduccion"/>
+			<one-to-many class="bd2.model.Traduccion"/>
+		</list>
+		<joined-subclass name="bd2.model.Moderador" table="MODERADOR">
+			<key column="idUsuario"/>
+			<list name="idiomas" cascade="all">
+				<key column="idUsuario"/>
+				<index column="idUsuarioModerador"/>
+				<one-to-many class="bd2.model.Idioma"></one-to-many>
+			</list>
+			<list name="evaluaciones" cascade="all">
+				<key column="idUsuario"></key>
+				<index column="idUsuarioEvaluacion"></index>
+				<one-to-many class="bd2.model.Evaluacion"></one-to-many>
+			</list>
+		</joined-subclass>
+	</class>
+	<class name="bd2.model.Sitio" table="SITIO">
+		<id name="id" type="long" column="idSitio" >
+			<generator class="native" />
+		</id>
+		<list name="usuarios" cascade="all">
+			<key column="idSitio"></key>
+			<index column="idSitioUsuario"></index>
+			<one-to-many class="bd2.model.Usuario"/>
+		</list>
+		<list name="cursos" cascade="all">
+			<key column="idSitio"></key>
+			<index column="idSitioCurso">
+			</index>
+			<one-to-many class="bd2.model.Curso" />
+		</list>
+		<list name="documentos" cascade="all">
+			<key column="idSitio"/>
+			<index column="idSitioDocumento"/>
+			<one-to-many class="bd2.model.Documento"/>
+		</list>
+	</class>
+</hibernate-mapping>

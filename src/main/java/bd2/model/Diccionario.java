@@ -12,11 +12,15 @@ import java.util.Map;
  * @version 1.0
  */
 public class Diccionario {
-
+	
+	private Long id;
 	private Map<String, String> definiciones;
 	private String edicion;
 	private Idioma idioma;
 	
+	public Diccionario() {
+		super();
+	}
 	/**
      * Constructor con 2 parametros
      * Este constructor crea un diccionario y se agrega como el diccionario actual del idioma al que pertenece
@@ -72,6 +76,12 @@ public class Diccionario {
 	 */
 	public Map<String,String>  getDefiniciones() {
 		return this.definiciones;	
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

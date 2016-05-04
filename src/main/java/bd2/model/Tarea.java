@@ -12,9 +12,14 @@ import java.util.Date;
  */
 public class Tarea {
 	
+	public Long id;
 	public Date fecha;
 	public String descripcion;
 	public Boolean completa;
+	
+	public Tarea() {
+		super();
+	}
 	
 	/*
 	 * Constructor de 3 parametros.
@@ -76,6 +81,14 @@ public class Tarea {
 	 * */
 	public boolean getCompleta() {
 		return this.completa;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

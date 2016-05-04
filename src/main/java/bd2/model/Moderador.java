@@ -21,6 +21,10 @@ public class Moderador extends Usuario{
 	Collection<Evaluacion> evaluaciones;
 	Collection<Idioma> idiomas;
 
+	public Moderador() {
+		super();
+	}
+
 	/*
 	 * Constructor de 3 parametros.
 	 * @param email				email del moderador.

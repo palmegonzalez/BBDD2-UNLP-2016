@@ -9,10 +9,14 @@ package bd2.model;
  * @version 1.0
  */
 public class Idioma {
-
+	
+	private Long id;
 	private String nombre;
 	private Diccionario diccionario;
 
+	public Idioma() {
+		super();
+	}
 	/**
      * Constructor con 1 parametro
      * Este constructor crea un idioma con nombre recibido por parametro y un diccionario inicial vacio.
@@ -50,5 +54,11 @@ public class Idioma {
 	 */
 	public void setDiccionario(Diccionario diccionario) {
 		this.diccionario = diccionario;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

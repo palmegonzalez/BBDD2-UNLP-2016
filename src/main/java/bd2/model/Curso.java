@@ -13,11 +13,15 @@ import java.util.HashSet;
  */
 public class Curso {
 	
+	private Long id;
 	private String nombre;
 	private Integer nivel;
 	private Idioma idioma;
 	private Collection<Leccion> lecciones;
 	
+	public Curso() {
+		super();
+	}
 	/**
      * Constructor con 3 parametros
      * @param nombre del curso
@@ -86,6 +90,12 @@ public class Curso {
 	 */
 	public void agregarLeccion(Leccion leccion) {
 		this.getLecciones().add(leccion);
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

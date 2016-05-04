@@ -13,11 +13,15 @@ import java.util.Collection;
  */
 public class Documento {
 	
+	private Long id;
 	private String nombre;
 	private Integer complejidad;
 	private Idioma idioma;
 	private Collection<Parrafo> parrafos;
 	
+	public Documento() {
+		super();
+	}
 	/**
      * Constructor con 2 parametros
      * @param nombre del documento
@@ -67,13 +71,25 @@ public class Documento {
 	/**
 	 * agregarParrafo - crea un parrafo con el string recibido y 
 	 * lo guarda en la collection de parrafos del documento
-	 * @param string para crear el parrafo y agregarlo al documento
+	 * @param parrafo recibe un string para crear el parrafo y agregarlo al documento
 	 * @return parrafo creado y agregado a la collection de parrafos del documento
 	 */
 	public Parrafo agregarParrafo(String parrafo) {
 		Parrafo p = new Parrafo(parrafo, this);
 		this.getParrafos().add(p);
 		return p;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Integer getComplejidad() {
+		return complejidad;
+	}
+	public void setComplejidad(Integer complejidad) {
+		this.complejidad = complejidad;
 	}
 	
 }

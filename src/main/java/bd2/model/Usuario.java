@@ -16,12 +16,16 @@ import java.util.Iterator;
 
 public class Usuario {
 
+	public Long id;
 	public String email;
 	public String nombre;
 	public Date fechaDeCreacion;
 	public Collection<Traduccion> traducciones;
 	public Collection<Cursada> cursadasRealizadas;
 
+	public Usuario() {
+		super();
+	}
 	/*
 	 * Constructor con 3 parámetros
 	 * @param email				es el email del usuario.

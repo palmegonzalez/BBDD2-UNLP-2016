@@ -10,19 +10,23 @@ package bd2.model;
  */
 public class Leccion {
 	
+	private Long id;
 	private String nombre;
 	
+	public Leccion() {
+		super();
+	}
 	/**
      * Constructor con 1 parametro
-     * @param nombre de la leccion
+     * @param nombre recibe un nombre para la leccion
      */
 	public Leccion(String nombre) {
 		super();
 		this.setNombre(nombre);
 	}
 	/**
-	 * Getter nombre de la leccion
-	 * @return nombre de la leccion
+	 * Getter Nombre del Diccionario
+	 * @return nombre del diccionario
 	 */
 	public String getNombre() {
 		return nombre;
@@ -33,6 +37,12 @@ public class Leccion {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

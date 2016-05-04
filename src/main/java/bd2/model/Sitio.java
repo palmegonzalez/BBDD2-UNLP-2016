@@ -14,11 +14,23 @@ import java.util.Collection;
  * traducción con un puntaje determinado.
  * */
 public class Sitio {
-
+	
+	private Long id;
 	private Collection<Documento> documentos;
 	private Collection<Usuario> usuarios;
 	private Collection<Curso> cursos;
 	
+	public Sitio() {
+		super();
+	}
+
+	public Sitio(Collection<Documento> documentos, Collection<Usuario> usuarios, Collection<Curso> cursos) {
+		super();
+		this.documentos = documentos;
+		this.usuarios = usuarios;
+		this.cursos = cursos;
+	}
+
 	/*
 	 * Getter Documentos.
 	 * @return coleccion de documentos del sitio.
@@ -65,6 +77,14 @@ public class Sitio {
 	 * */
 	public void agregarDocumento(Documento documento) {
 		this.getDocumentos().add(documento);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

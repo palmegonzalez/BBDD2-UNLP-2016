@@ -18,6 +18,10 @@ public class Traduccion extends Tarea{
 	private Parrafo parrafo;
 	private Idioma idioma;
 
+	public Traduccion() {
+		super();
+	}
+
 	/*
 	 * Constructor de 6 parametros.
 	 * @param fecha 		es la fecha de la traduccion.

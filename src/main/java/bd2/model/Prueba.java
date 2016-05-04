@@ -10,8 +10,13 @@ package bd2.model;
  * */
 public class Prueba {
 	
+	private Long id;
 	private Integer puntaje;
 	private Leccion leccion;
+
+	public Prueba() {
+		super();
+	}
 
 	/*
 	 * Constructor con 2 parametros.
@@ -70,6 +75,14 @@ public class Prueba {
 	 * */
 	public Boolean aprobada() {
 		return (this.getPuntaje() >= 60 );
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
