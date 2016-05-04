@@ -96,4 +96,12 @@ public class Moderador extends Usuario{
 	public Collection<Evaluacion> getEvaluaciones() {
 		return this.evaluaciones;
 	}
+	
+	public void setEvaluaciones(Collection<Evaluacion> evaluaciones) {
+		this.evaluaciones = evaluaciones;
+	}
+
+	public void setIdiomas(Collection<Idioma> idiomas) {
+		this.idiomas = idiomas;
+	}
 }

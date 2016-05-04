@@ -82,6 +82,10 @@ public class Tarea {
 	public boolean getCompleta() {
 		return this.completa;
 	}
+	
+	public void setCompleta(Boolean completa) {
+		this.completa = completa;
+	}
 
 	public Long getId() {
 		return id;
