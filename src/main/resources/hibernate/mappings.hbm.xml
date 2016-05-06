@@ -51,8 +51,8 @@
 		<id name="id" type="long" column="idParrafo" >
 			<generator class="native" />
 		</id>
-		<property name="texto" column="texto" type="string"/>
-		<many-to-one name="documento" cascade="all" column="idDocumento" unique="true" />
+		<property name="texto" column="texto" type="text"/>
+		<many-to-one name="documento" cascade="all" column="idDocumento" unique="false" />
 	</class>
 	<class name="bd2.model.Documento" table="DOCUMENTO">
 		<id name="id" type="long" column="idDocumento" >
@@ -76,9 +76,9 @@
 		<property name="descripcion" column="descripcion" type="string"/>
 		<property name="completa" column="completa" type="boolean"/>
 		<subclass name="bd2.model.Traduccion" discriminator-value="TR">
-			<property name="texto" column="texto" type="string" />
-			<many-to-one name="idioma" column="idIdioma" unique="true" cascade="all" />
-			<many-to-one name="parrafo" column="idParrafo" unique="true" cascade="all" />
+			<property name="texto" column="texto" type="text" />
+			<many-to-one name="idioma" column="idIdioma" unique="false" cascade="all" />
+			<many-to-one name="parrafo" column="idParrafo" unique="false" cascade="all" />
 		</subclass>
 		<subclass name="bd2.model.Evaluacion" discriminator-value="EV">
 			<property name="puntaje" column="puntaje" type="int" />
@@ -116,14 +116,14 @@
 			<one-to-many class="bd2.model.Traduccion"/>
 		</list>
 		<joined-subclass name="bd2.model.Moderador" table="MODERADOR">
-			<key column="idUsuario"/>
+			<key column="idModerador"/>
 			<list name="idiomas" cascade="all">
-				<key column="idUsuario"/>
-				<index column="idUsuarioModerador"/>
+				<key column="idModerador"/>
+				<index column="idModeradorIdioma"/>
 				<one-to-many class="bd2.model.Idioma"></one-to-many>
 			</list>
 			<list name="evaluaciones" cascade="all">
-				<key column="idUsuario"></key>
+				<key column="idModerador"></key>
 				<index column="idUsuarioEvaluacion"></index>
 				<one-to-many class="bd2.model.Evaluacion"></one-to-many>
 			</list>

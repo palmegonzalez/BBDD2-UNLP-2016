@@ -143,4 +143,7 @@ public class Cursada {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public void setPruebas(Collection<Prueba> pruebas) {
+		this.pruebas = pruebas;
+	}
 }

@@ -77,5 +77,13 @@ public class Traduccion extends Tarea{
 	public String getTexto() {
 		return this.texto;
 	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public void setParrafo(Parrafo parrafo) {
+		this.parrafo = parrafo;
+	}
 	
 }

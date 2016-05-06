@@ -1,5 +1,6 @@
 package bd2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /*
@@ -22,6 +23,9 @@ public class Sitio {
 	
 	public Sitio() {
 		super();
+		this.documentos = new ArrayList<Documento>();
+		this.usuarios = new ArrayList<Usuario>();
+		this.cursos = new ArrayList<Curso>();
 	}
 
 	public Sitio(Collection<Documento> documentos, Collection<Usuario> usuarios, Collection<Curso> cursos) {
@@ -85,6 +89,18 @@ public class Sitio {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public void setDocumentos(Collection<Documento> documentos) {
+		this.documentos = documentos;
+	}
+
+	public void setUsuarios(Collection<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public void setCursos(Collection<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 }

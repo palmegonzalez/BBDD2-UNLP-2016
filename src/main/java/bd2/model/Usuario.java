@@ -133,4 +133,26 @@ public class Usuario {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setFechaDeCreacion(Date fechaDeCreacion) {
+		this.fechaDeCreacion = fechaDeCreacion;
+	}
+	public void setTraducciones(Collection<Traduccion> traducciones) {
+		this.traducciones = traducciones;
+	}
+	public void setCursadasRealizadas(Collection<Cursada> cursadasRealizadas) {
+		this.cursadasRealizadas = cursadasRealizadas;
+	}
 }

@@ -68,6 +68,15 @@ public class Documento {
 	public Collection<Parrafo> getParrafos() {
 		return parrafos;
 	}
+	
+	/**
+	 * Setter parrafos
+	 * @param coleccion de parrafos.
+	 */
+	public void setParrafos(Collection<Parrafo> parrafos) {
+		this.parrafos = parrafos;
+	}
+
 	/**
 	 * agregarParrafo - crea un parrafo con el string recibido y 
 	 * lo guarda en la collection de parrafos del documento

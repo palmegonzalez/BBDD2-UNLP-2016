@@ -1,7 +1,7 @@
 package bd2.model;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
  * Clase Curso
@@ -33,7 +33,7 @@ public class Curso {
 		this.nombre = nombre;
 		this.nivel = nivel;
 		this.idioma = idioma;
-		this.lecciones = new HashSet<Leccion>();
+		this.lecciones = new ArrayList<Leccion>();
 	}
 	/**
 	 * Getter nombre del curso
@@ -96,6 +96,9 @@ public class Curso {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public void setLecciones(Collection<Leccion> lecciones) {
+		this.lecciones = lecciones;
 	}
 	
 }
