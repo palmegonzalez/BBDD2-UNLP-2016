@@ -13,19 +13,19 @@
 			<generator class="native" />
 		</id>
 		<property name="nombre" column="nombre" type="string"/> 
-		<many-to-one name="diccionario" class="Diccionario" cascade="all" column="idDiccionario" unique="true" not-null="true" />
+		<many-to-one name="diccionario" class="Diccionario" cascade="all" column="idDiccionario" unique="true"/>
 	</class>
 	<class name="bd2.model.Diccionario" table="DICCIONARIO">
 		<id name="id" type="long" column="idDiccionario" >
 			<generator class="native" />
 		</id>
-    	<map name="definiciones">
-      		<key column="idDiccionario"/>
-    		<map-key column="clave" type="string"></map-key>
-    		<element column="definicion" type="string"></element>
+    	<map name="definiciones" cascade="all">
+     		<key column="idDiccionario" not-null="false" />
+    		<map-key column="clave" type="string"/>
+    		<element column="definicion" type="string"/>
 		</map>
 		<property name="edicion" column="edicion" type="string"/>
-		<one-to-one name="idioma" property-ref="id" class="Idioma"></one-to-one>
+		<many-to-one name="idioma" class="Idioma" column="idIdioma"  cascade="all" unique="true"/>
 	</class>
 	<class name="bd2.model.Prueba" table="PRUEBA">
 		<id name="id" type="long" column="idPrueba" >
@@ -41,8 +41,8 @@
 		<property name="nombre" column="nombre" type="string"/>
 		<property name="nivel" column="nivel" type="int"/>
 		<many-to-one name="idioma" column="idIdioma" cascade="all" unique="true" />
-		<list name="lecciones" cascade="all">
-			<key column="idCurso"/>
+		<list name="lecciones" cascade="save-update">
+			<key column="idCurso" not-null="false"/>
 			<index column="idCursoLeccion"/>
 			<one-to-many class="Leccion"/>
 		</list>
@@ -60,8 +60,8 @@
 		</id>
 		<property name="nombre" column="nombre" type="string"/>
 		<property name="complejidad" column="complejidad" type="int"/>
-		<list name="parrafos" cascade="all">
-			<key column="idDocumento"/>
+		<list name="parrafos" cascade="save-update">
+			<key column="idDocumento" not-null="false"/>
 			<index column="idDocumentoParrafo"/>
 			<one-to-many class="bd2.model.Parrafo"/>
 		</list>
@@ -90,8 +90,8 @@
 			<generator class="native" />
 		</id>
 		<property name="inicio" column="inicio" type="date" />
-		<list name="pruebas" cascade="all">
-			<key column="idCursada" />
+		<list name="pruebas" cascade="save-update">
+			<key column="idCursada" not-null="false" />
 			<index column="idCursadaPrueba" />
 			<one-to-many class="bd2.model.Prueba" />
 		</list>
@@ -105,27 +105,27 @@
 		<property name="email" column="email" type="string" />
 		<property name="nombre" column="nombre" type="string" />
 		<property name="fechaDeCreacion" column="fecha_de_creacion" type="date" />
-	  	<list name="cursadasRealizadas" cascade="all">
+	  	<list name="cursadasRealizadas" cascade="save-update">
 			<key column="idUsuario" not-null="false" />
 			<list-index column="idUsuarioCursada" />
 			<one-to-many class="bd2.model.Cursada" />
 		</list>
-		<list name="traducciones" cascade="all">
-			<key column="idUsuario"/>
+		<list name="traducciones" cascade="save-update">
+			<key column="idUsuario" not-null="false"/>
 			<index column="idUsuarioTraduccion"/>
 			<one-to-many class="bd2.model.Traduccion"/>
 		</list>
 		<joined-subclass name="bd2.model.Moderador" table="MODERADOR">
-			<key column="idModerador"/>
-			<list name="idiomas" cascade="all">
-				<key column="idModerador"/>
+			<key column="idUsuario" not-null="false"/>
+			<list name="idiomas" cascade="save-update">
+				<key column="idModerador" not-null="false"/>
 				<index column="idModeradorIdioma"/>
-				<one-to-many class="bd2.model.Idioma"></one-to-many>
+				<one-to-many class="bd2.model.Idioma"/>
 			</list>
-			<list name="evaluaciones" cascade="all">
-				<key column="idModerador"></key>
-				<index column="idUsuarioEvaluacion"></index>
-				<one-to-many class="bd2.model.Evaluacion"></one-to-many>
+			<list name="evaluaciones" cascade="save-update">
+				<key column="idModerador" not-null="false"/>
+				<index column="idModeradorEvaluacion"/>
+				<one-to-many class="bd2.model.Evaluacion"/>
 			</list>
 		</joined-subclass>
 	</class>
@@ -133,19 +133,19 @@
 		<id name="id" type="long" column="idSitio" >
 			<generator class="native" />
 		</id>
-		<list name="usuarios" cascade="all">
-			<key column="idSitio"></key>
-			<index column="idSitioUsuario"></index>
+		<list name="usuarios" cascade="save-update">
+			<key column="idSitio" not-null="false"/>
+			<index column="idSitioUsuario"/>
 			<one-to-many class="bd2.model.Usuario"/>
 		</list>
-		<list name="cursos" cascade="all">
-			<key column="idSitio"></key>
+		<list name="cursos" cascade="save-update">
+			<key column="idSitio" not-null="false"/>
 			<index column="idSitioCurso">
 			</index>
 			<one-to-many class="bd2.model.Curso" />
 		</list>
-		<list name="documentos" cascade="all">
-			<key column="idSitio"/>
+		<list name="documentos" cascade="save-update">
+			<key column="idSitio" not-null="false"/>
 			<index column="idSitioDocumento"/>
 			<one-to-many class="bd2.model.Documento"/>
 		</list>
