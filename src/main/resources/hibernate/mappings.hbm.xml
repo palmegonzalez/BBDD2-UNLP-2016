@@ -13,7 +13,7 @@
 			<generator class="native" />
 		</id>
 		<property name="nombre" column="nombre" type="string"/> 
-		<many-to-one name="diccionario" class="Diccionario" cascade="all" column="idDiccionario" unique="false"/>
+		<many-to-one name="diccionario" class="Diccionario" cascade="all" column="idDiccionario" unique="true"/>
 	</class>
 	<class name="bd2.model.Diccionario" table="DICCIONARIO">
 		<id name="id" type="long" column="idDiccionario" >
@@ -25,7 +25,7 @@
     		<element column="definicion" type="string"/>
 		</map>
 		<property name="edicion" column="edicion" type="string"/>
-		<many-to-one name="idioma" class="Idioma" column="idIdioma"  cascade="all" unique="false"/>
+		<one-to-one name="idioma" property-ref="diccionario"/>
 	</class>
 	<class name="bd2.model.Prueba" table="PRUEBA">
 		<id name="id" type="long" column="idPrueba" >
